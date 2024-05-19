@@ -21,7 +21,7 @@ h2{
 
 .node {
     margin: auto;
-  
+  background-color: black;
     border: 1px solid green;
     color: yellow;
 
@@ -30,7 +30,7 @@ h2{
 .children {
   display: flex;
 }
-#bigDiv{
+#card{
     background-color: rgb(28 25 23);
     color: white;
     width: 100%;
