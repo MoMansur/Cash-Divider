@@ -93,32 +93,65 @@ function cardDiv(){
             let tree= getFactoryAlg.treeArray
           
 
-            function displayNestedArray(arr) {
-                arr.forEach(subArray => {
+            function displayNestedArray(nestedArray) {
+               
+                
+                nestedArray.forEach((subArray, index) => {
                     // Create a new div for each sub-array
                     const divElement = document.createElement('div');
-                    divElement.className = 'CalcDivs'
+                    divElement.className = 'CalcDivs';
                     divElement.classList.add('sub-array');
-            
+                
                     subArray.forEach(element => {
-                        // Create a span for each element in the sub-array
-                        const spanElement = document.createElement('button');
-                        spanElement.textContent = element;
-                        divElement.appendChild(spanElement);
+                        // Create a span or button based on conditions
+                        const newItem = (index === nestedArray.length - 1) ? 
+                            createButton(element) : 
+                            createSpan(element);
+                
+                        // Append the item to the div
+                        divElement.appendChild(newItem);
                     });
-            
+                
                     secondLine.appendChild(divElement);
                 });
+                
+                function createSpan(text) {
+                    const spanElement = document.createElement('span');
+                    spanElement.textContent = text;
+                    return spanElement;
+                }
+                
+                function createButton(text) {
+                    const buttonElement = document.createElement('button');
+                    buttonElement.textContent = text;
+                    buttonElement.style.backgroundColor = 'purple'
+                    // Add event listener to the button
+                    let isClicked = true
+                    buttonElement.addEventListener('click', () => {
+                      
+                   
+                        console.log('Button clicked:', text);
+                        if(isClicked){
+                            buttonElement.style.backgroundColor = 'green'
+                        }else{
+                            buttonElement.style.backgroundColor = 'red'
+                        }
+                        isClicked = !isClicked
+                    });
+                    return buttonElement;
+                }
+             
             }
 //AN EXPORT
 
 
              let isOn = true;
-             
+
             viewBtn.addEventListener('click', ()=>{
                 if(isOn){
-                    card.append(secondLine)
 
+                    card.append(secondLine)
+                
                     //Sorting Array
                     let sortedArray = []
                     const sorting = treeArray.sort((a, b) => b-a)  
@@ -127,39 +160,26 @@ function cardDiv(){
                     //The Duplicates Array
                     const duplicatesArray = groupDuplicates(treeArray);
 
-
-                    //Displayer nested Function
                     displayNestedArray(duplicatesArray);
-                  
-                    
-                console.log(sortedArray)
-                console.log(duplicatesArray)
-                  
+                      
+                                            
+                
                 }else{
-            
-                    console.log(treeArray)
+   
                     card.removeChild(secondLine) 
+                    console.log(treeArray)
+            
                 }
                 isOn = !isOn
                 
 
-                
-                
-               
-                   
-                                  
+                            
             })
         })();
     })();
     
         
-
-    
-   
-
 }
-
- 
    return cardDiv()
 
 });

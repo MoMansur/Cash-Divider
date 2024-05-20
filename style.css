@@ -58,7 +58,7 @@ h2{
 
 
 
-span{
+#card span{
  color: white;
  padding: 10px;
  background-color: rgb(44, 42, 39);
@@ -95,7 +95,7 @@ span{
 
 
 button{
-
+    justify-content: space-around;
 }
 
 .CalcDivs{
@@ -113,14 +113,16 @@ button{
     margin: 10px 0;
     padding: 10px;
     border: 1px solid #ccc;
-
     height: auto;
     border-radius: 10px;
     
 }
 .sub-array.multiple {
     justify-content: space-around;
+
 }
 .sub-array span {
     margin: 0 5px;
+    background-color: brown;
 }
+

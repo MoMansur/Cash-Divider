@@ -70,7 +70,6 @@ displayer()
 form.addEventListener('submit', (e)=>{
     e.preventDefault()
 
-
     addCard(nameInput.value, typeSelect.value, amountInput.value, divIntoInput.value)
 
     modelSpace.innerHTML = "";
