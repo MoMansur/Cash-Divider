@@ -1,0 +1,44 @@
+ const sortedArray = tree.sort((a, b) => b-a)  
+                    sortedArrays.push(sortedArray);
+                 
+
+                 
+                    const result = groupDuplicates(sortedArray);
+                  console.log(sortedArrays)
+              
+                  let cool = sortedArray[0]
+                   
+                    
+
+                    function display()
+
+                    const treeDisplayer = (arr)=>{
+                        for(let i=0; i<arr.length; i++){
+                            
+                            let eachBtn = document.createElement('button')
+                            eachBtn.innerHTML += arr[i]
+                            
+
+                            secondLine.append(eachBtn)
+                          
+                        }
+                    }
+
+
+                          let sortedArray = []
+
+                    const sorting = treeArray.sort((a, b) => b-a)  
+                    sortedArray.push(sorting);
+                 
+
+
+     for(let i=0; i<duplicatesArray.length; i++){
+                    const theDivs = document.createElement('div')
+                    
+
+                    secondLine.append(theDivs)
+                    secondLine.innerHTML += "<div>" + duplicatesArray[i]+"</div>"
+
+                    
+                  
+                  }

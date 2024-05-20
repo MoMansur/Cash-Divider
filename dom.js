@@ -1,5 +1,6 @@
 import factoryTreeElements from "./algorithm.js";
 import { deleeFunc, treeDisplayer} from "./main.js";
+import { groupDuplicates } from "./algorithm.js";
 
 
 
@@ -33,10 +34,12 @@ function cardDiv(){
         const nameSpan = document.createElement('span')
         nameSpan.innerText = name;
         nameSpan.id = 'nameSpan'
+        nameSpan.className = 'nameSpanClass'
     
         const typeSpan = document.createElement('span')
         typeSpan.id = 'typeSpan'
         typeSpan.innerText = type;
+        typeSpan.className = 'typeSpanClass'
     
         const amountSpan = document.createElement('span')
         amountSpan.id = 'amountSpan'
@@ -75,28 +78,74 @@ function cardDiv(){
         })();
 
 
-      function secondLineFunc(){
-            const secondLine = document.createElement('div')
-            secondLine.className = 'secondLine'
-            card.append(secondLine)
-        
-                getFactoryAlg.setTree(amount,divInto,secondLine)
-         
-        }
+  
     
 
-         
+         let treeArray = []
+       
         //VIEW BUTTON FUNCTION
         const viewEvent = (()=>{
             
+            const secondLine = document.createElement('div')
+            secondLine.className = 'secondLine'
+            getFactoryAlg.setTree(amount,divInto,treeArray)
+
+            let tree= getFactoryAlg.treeArray
+          
+
+            function displayNestedArray(arr) {
+                arr.forEach(subArray => {
+                    // Create a new div for each sub-array
+                    const divElement = document.createElement('div');
+                    divElement.className = 'CalcDivs'
+                    divElement.classList.add('sub-array');
+            
+                    subArray.forEach(element => {
+                        // Create a span for each element in the sub-array
+                        const spanElement = document.createElement('button');
+                        spanElement.textContent = element;
+                        divElement.appendChild(spanElement);
+                    });
+            
+                    secondLine.appendChild(divElement);
+                });
+            }
+//AN EXPORT
+
+
+             let isOn = true;
+             
             viewBtn.addEventListener('click', ()=>{
-                
-                function treeShower(){
-                    let tree= getFactoryAlg.treeArray
-                    console.log(tree)
+                if(isOn){
+                    card.append(secondLine)
+
+                    //Sorting Array
+                    let sortedArray = []
+                    const sorting = treeArray.sort((a, b) => b-a)  
+                    sortedArray.push(sorting);
+                 
+                    //The Duplicates Array
+                    const duplicatesArray = groupDuplicates(treeArray);
+
+
+                    //Displayer nested Function
+                    displayNestedArray(duplicatesArray);
+                  
+                    
+                console.log(sortedArray)
+                console.log(duplicatesArray)
+                  
+                }else{
+            
+                    console.log(treeArray)
+                    card.removeChild(secondLine) 
                 }
-                treeShower()
-                secondLineFunc()
+                isOn = !isOn
+                
+
+                
+                
+               
                    
                                   
             })

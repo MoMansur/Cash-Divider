@@ -2,6 +2,7 @@
     background-color: rgb(30, 30, 30);
     color: white;
     height: 100vh;
+    margin-top: 0px;
 }
 
 .col-9{
@@ -14,6 +15,7 @@ h1{
     height: 70px;
     text-align: center;
     padding: 10px;
+    margin-bottom: 0px;
 }
 h2{
     text-align: center;
@@ -22,6 +24,7 @@ h2{
 .node {
     margin: auto;
   background-color: black;
+  border-radius: 5px;
     border: 1px solid green;
     color: yellow;
 
@@ -58,7 +61,7 @@ h2{
 span{
  color: white;
  padding: 10px;
- background-color: rgb(87 83 78);
+ background-color: rgb(44, 42, 39);
  width: 200px;
  height: auto;
  border-radius: 10px;
@@ -88,4 +91,36 @@ span{
 
 .btn{
     margin: 5px;
+}
+
+
+button{
+
+}
+
+.CalcDivs{
+    background-color: rgb(12, 43, 12);
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+
+.sub-array {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+
+    height: auto;
+    border-radius: 10px;
+    
+}
+.sub-array.multiple {
+    justify-content: space-around;
+}
+.sub-array span {
+    margin: 0 5px;
 }
