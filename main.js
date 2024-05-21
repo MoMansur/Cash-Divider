@@ -1,7 +1,6 @@
 import modelCreator from "./dom.js";
 
 
-
 const dataArray = []
 class Data{
     constructor(name, type, amount, divInto){
@@ -25,23 +24,33 @@ function addCard(name, type, amount, divInto){
 dataArray.push({
     name: 'Bills', 
     type: 'Debt',
-    amount: 200,
-    divInto: 2
+    amount: 400,
+    divInto: 4
 })
 
 const calcArr = [];
 
 
-
-function calc(amount, divideInto) {
+export const  calc = (amount, divideInto, theDiv) =>{
     let sum = amount / divideInto;
+    calcArr.length = 0;
 
     for (let i = 0; i < divideInto; i++) {
         calcArr.push(sum);
+        
+       
+    } 
+    theDiv.innerHTML = '';
 
-        console.log(calcArr[i])
+    // Append new results
+    for (let j = 0; j < calcArr.length; j++) {
+        theDiv.innerHTML += `<span>${calcArr[j]}</span>`;
     }
+
+
+
 }
+
 
 // Example usage
 
@@ -51,11 +60,9 @@ function calc(amount, divideInto) {
 function displayer(){  
     for(let i = 0; i<dataArray.length; i++){
         modelCreator(dataArray[i].name, dataArray[i].type, dataArray[i].amount, dataArray[i].divInto, i)
-        calc(dataArray[i].amount, dataArray[i].divInto);
-        console.log(calcArr)
-      
-
+        
     }
+
 }
 
 export const getCalcArr = (() => {return calcArr})();
@@ -77,12 +84,21 @@ export function deleeFunc(model){
 
 displayer()
 
-form.addEventListener('submit', (e)=>{
-    e.preventDefault()
+
+function formCaller(){
 
     addCard(nameInput.value, typeSelect.value, amountInput.value, divIntoInput.value)
 
     modelSpace.innerHTML = "";
     displayer()
-    console.log(dataArray)
+    calc(amountInput.value, divIntoInput.value);
+}
+
+
+form.addEventListener('submit', (e)=>{
+    e.preventDefault()
+    formCaller()
+
+
+    form.reset()
    })
