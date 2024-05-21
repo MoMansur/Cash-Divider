@@ -1,20 +1,13 @@
-import factoryTreeElements from "./algorithm.js";
-import { deleeFunc, treeDisplayer} from "./main.js";
-import { groupDuplicates } from "./algorithm.js";
+
+import { deleeFunc} from "./main.js";
+import { getCalcArr } from "./main.js";
 
 
 
-const getFactoryAlg = factoryTreeElements()
 
 const modelSpace= document.getElementById('modelSpace')
 
 
-// //FORM
-// const form = document.getElementById('form')
-// const nameInput = document.getElementById('nameInput');
-// const typeSelect = document.getElementById('typeSelect');
-// const amountInput = document.getElementById('amountInput');
-// const divIntoInput = document.getElementById('divIntoInput');
  const modelCreator = ((name, type, amount, divInto, index)=>{
 
     
@@ -34,12 +27,10 @@ function cardDiv(){
         const nameSpan = document.createElement('span')
         nameSpan.innerText = name;
         nameSpan.id = 'nameSpan'
-        nameSpan.className = 'nameSpanClass'
     
         const typeSpan = document.createElement('span')
         typeSpan.id = 'typeSpan'
         typeSpan.innerText = type;
-        typeSpan.className = 'typeSpanClass'
     
         const amountSpan = document.createElement('span')
         amountSpan.id = 'amountSpan'
@@ -78,108 +69,58 @@ function cardDiv(){
         })();
 
 
-  
+    
     
 
-         let treeArray = []
-       
-        //VIEW BUTTON FUNCTION
-        const viewEvent = (()=>{
-            
-            const secondLine = document.createElement('div')
-            secondLine.className = 'secondLine'
-            getFactoryAlg.setTree(amount,divInto,treeArray)
 
-            let tree= getFactoryAlg.treeArray
-          
 
-            function displayNestedArray(nestedArray) {
-               
-                
-                nestedArray.forEach((subArray, index) => {
-                    // Create a new div for each sub-array
-                    const divElement = document.createElement('div');
-                    divElement.className = 'CalcDivs';
-                    divElement.classList.add('sub-array');
-                
-                    subArray.forEach(element => {
-                        // Create a span or button based on conditions
-                        const newItem = (index === nestedArray.length - 1) ? 
-                            createButton(element) : 
-                            createSpan(element);
-                
-                        // Append the item to the div
-                        divElement.appendChild(newItem);
-                    });
-                
-                    secondLine.appendChild(divElement);
-                });
-                
-                function createSpan(text) {
-                    const spanElement = document.createElement('span');
-                    spanElement.textContent = text;
-                    return spanElement;
-                }
-                
-                function createButton(text) {
-                    const buttonElement = document.createElement('button');
-                    buttonElement.textContent = text;
-                    buttonElement.style.backgroundColor = 'purple'
-                    // Add event listener to the button
-                    let isClicked = true
-                    buttonElement.addEventListener('click', () => {
-                      
-                   
-                        console.log('Button clicked:', text);
-                        if(isClicked){
-                            buttonElement.style.backgroundColor = 'green'
-                        }else{
-                            buttonElement.style.backgroundColor = 'red'
-                        }
-                        isClicked = !isClicked
-                    });
-                    return buttonElement;
-                }
-             
-            }
 //AN EXPORT
 
 
-             let isOn = true;
-
-            viewBtn.addEventListener('click', ()=>{
-                if(isOn){
-
-                    card.append(secondLine)
-                
-                    //Sorting Array
-                    let sortedArray = []
-                    const sorting = treeArray.sort((a, b) => b-a)  
-                    sortedArray.push(sorting);
-                 
-                    //The Duplicates Array
-                    const duplicatesArray = groupDuplicates(treeArray);
-
-                    displayNestedArray(duplicatesArray);
-                      
-                                            
-                
-                }else{
-   
-                    card.removeChild(secondLine) 
-                    console.log(treeArray)
-            
-                }
-                isOn = !isOn
-                
-
-                            
-            })
-        })();
-    })();
+  
     
         
+
+    })();
+
+    const secondLineFunc = (() =>{
+            
+        const secondLine = document.createElement('div')
+        secondLine.className = 'secondLine'
+        secondLine.innerText = 'Calculations'
+        
+            card.append(secondLine)
+
+      
+
+            const calcDiv = document.createElement('div')
+            calcDiv.className = 'CalcDivs'
+
+           
+
+        
+            // for(let i=0; i<calcArr[i]; i++){
+            //     const calcBtn = document.createElement('button')
+            //     calcBtn.innerText = getCalcArr[i]
+              
+            //     calcDiv.append(calcBtn)
+          
+           
+            // }
+   
+            console.log(getCalcArr)
+            secondLine.append(calcDiv)
+            
+
+            
+         
+        })();
+   
+   
+
 }
+
+ 
    return cardDiv()
 
 });

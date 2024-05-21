@@ -1,5 +1,4 @@
 import modelCreator from "./dom.js";
-import factoryTreeElements from "./algorithm.js";
 
 
 
@@ -27,28 +26,39 @@ dataArray.push({
     name: 'Bills', 
     type: 'Debt',
     amount: 200,
-    divInto: 3
+    divInto: 2
 })
 
+const calcArr = [];
 
-function amountDivider(){
 
-    function maths(amount, divideInto){
-        for(let i =0; i<divideInto; i++){
-            let all = amount / divideInto
-          models(all)
-        }
+
+function calc(amount, divideInto) {
+    let sum = amount / divideInto;
+
+    for (let i = 0; i < divideInto; i++) {
+        calcArr.push(sum);
+
+        console.log(calcArr[i])
     }
-    maths(100, 4)
 }
+
+// Example usage
+
 
 
 
 function displayer(){  
     for(let i = 0; i<dataArray.length; i++){
         modelCreator(dataArray[i].name, dataArray[i].type, dataArray[i].amount, dataArray[i].divInto, i)
+        calc(dataArray[i].amount, dataArray[i].divInto);
+        console.log(calcArr)
+      
+
     }
 }
+
+export const getCalcArr = (() => {return calcArr})();
 
 export function deleeFunc(model){
     const index = parseInt(model.getAttribute("data-index"));
@@ -76,13 +86,3 @@ form.addEventListener('submit', (e)=>{
     displayer()
     console.log(dataArray)
    })
-
-let getFactoryAlg = factoryTreeElements()
-
-  export function treeDisplayer(index){
-    const treeArray = getFactoryAlg.treeArray
-    console.log(treeArray)
-
-   }
-
-   
