@@ -52,3 +52,20 @@
  
             const secondLine = document.createElement('div')
             secondLine.className = 'secondLine'
+
+
+            <div class="form-group row">
+                      <div class="col-md-6">
+                          <label for="divIntoInput">Div Into</label>
+                          <input type="number" class="form-control" id="divIntoInput" placeholder="Enter value">
+                      </div>
+                      <div class="col-md-6">
+                          <label for="currencySelect">Currency</label>
+                          <select class="form-control" id="currencySelect">
+                              <option value="usd">USD</option>
+                              <option value="eur">EUR</option>
+                              <option value="gbp">GBP</option>
+                              <option value="jpy">JPY</option>
+                              <option value="jpy">TRY</option>
+                          </select>
+                      </div>

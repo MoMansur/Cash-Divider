@@ -21,7 +21,9 @@ h2{
     text-align: center;
 }
 
-
+#divIntoSpan{
+    width: 80px;
+}
 #card{
     background-color: rgb(21, 14, 10);
     color: white;
@@ -39,37 +41,43 @@ h2{
     
 }
 
+
 .formDataSpan{
     color: white;
-    background-color: rgb(255, 153, 0);
     height: auto;
     border-radius: 10px;
     font-size: 1.5rem;
     font-weight: 600;
     margin: 10px;
-    background-color: rgb(12, 43, 12);
 }
+
 
 
 
 span{
- color: white;
- padding: 10px;
- background-color: rgb(44, 42, 39);
- width: 200px;
- height: auto;
- border-radius: 10px;
- font-size: 1.5rem;
- font-weight: 600;
- margin: 10px;
-
+    color: white;
+    padding: 10px;
+    background-color: rgb(44, 42, 39);
+    width: 200px;
+    height: 50px;
+    line-height: 30px;
+    border-radius: 10px;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 600;
+    margin: 10px;
 }
 
 
-.btn{
-    height: 45px;
-    margin: 5px;
+.statusSpan{
+    width: 300px;
 }
+
+#cardStats{
+    display: inline-flex;
+    
+}
+
 
 
 .secondLine{
@@ -81,17 +89,51 @@ span{
 
 .CalcDivs{
     background-color: rgb(0, 0, 0);
-    display: flex;
     justify-content: center;
     align-items: center;
     margin: 10px 0;
     padding: 10px;
     height: auto;
     border-radius: 10px;
+    justify-content: space-between;
+
+    width: 100%;
+    overflow-y: auto; /* Allow vertical scrolling if needed */
+    max-height: 900px; /* Set a fixed height to control vertical overflow */
+    border: 1px solid #ccc; /* Optional: to visually see the div boundary */
+
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap to a new row */
+    gap: 10px; /* Space between items */
+    width: 100%; /* Ensure the container doesn't exceed the viewport width */
+    overflow-y: auto; /* Allow vertical scrolling if needed */
+    max-height: 300px; /* Set a maximum height to control vertical overflow */
+    border: 1px solid #ccc; /* Optional: to visually see the div boundary */
+
     
 }
 
+#division {
+    flex: 0 1 auto; /* Items will shrink and grow as needed, but not exceed their content width */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    border: 1px solid #ccc; /* Optional: border for each item */
+    padding: 10px; /* Optional: padding inside each item */
+}
+
+#cardStats{
+   width: 100%;
+   display: flex;
+    justify-content: space-between; /* To evenly distribute the items */
+    align-items: center; /* To vertically center the items */
+    
+}
 .spanData{
     margin: 10px;
     width: 200px;
+}
+
+#DeleteBtn{
+    float: right;
+    height: 50px;
+    width: 150px;
 }
