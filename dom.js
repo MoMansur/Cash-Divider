@@ -1,10 +1,10 @@
 
-import { calc, deleeFunc} from "./main.js";
-import { DivisionClickCalculation } from "./main.js";
+import { deleeFunc} from "./main.js";
+// import { DivisionClickCalculation } from "./main.js";
 
 
 const modelSpace= document.getElementById('modelSpace')
-const getCalcDiv = document.getElementById('CalcDivs')
+const getDivisionContainer = document.getElementById('divisionContainer')
 
 
 
@@ -65,7 +65,7 @@ const getCalcDiv = document.getElementById('CalcDivs')
         nameSpan.setBgColor('black')
 
 
-        const typeSpan = factoryDom('span','typeSpan', 'formDataSpan',)
+        const typeSpan = factoryDom('span','typeSpan', 'formDataType',)
         typeSpan.setInnerText(type)
         if(type === 'Debt'){
             typeSpan.setBgColor('rgb(161 98 7)')
@@ -73,7 +73,7 @@ const getCalcDiv = document.getElementById('CalcDivs')
             typeSpan.setBgColor('rgb(22 78 99)')
         }
 
-        const amountSpan = factoryDom('span','amountSpan', 'formDataSpan')
+        const amountSpan = factoryDom('span','amountSpan', 'formDataAmount')
         amountSpan.setInnerText(currencySelect+amount)  
 
         const divIntoSpan = factoryDom('span','divIntoSpan', 'formDataSpan')
@@ -88,10 +88,7 @@ const getCalcDiv = document.getElementById('CalcDivs')
         const cardStats = factoryDom( 'div', 'cardStats', 'cardStats')
         const getCardStats = cardStats.element
            
-            const statusSpan = factoryDom( 'p', 'statusSpan', 'statusSpan')
-            statusSpan.setBgColor('black')
-            statusSpan.setWidth('300px','50px')
-            statusSpan.otherCss('1px solid white', '10px', '5px','center' )
+          
     
             //Delete Button
            const deleteButton =factoryDom('button', 'DeleteBtn', 'btn btn-danger',)
@@ -101,28 +98,80 @@ const getCalcDiv = document.getElementById('CalcDivs')
                 deleeFunc(card); 
             });
 
+               
+        const divisionContainer = factoryDom('div', 'divisionContainer', 'divisionContainer')
+        const getDivisionContainer = divisionContainer.element 
 
-     
+        
+    const statusSpan = factoryDom( 'p', 'statusSpan', 'statusSpan')
+    statusSpan.setBgColor('black')
+    statusSpan.setWidth('300px','50px')
+    statusSpan.otherCss('1px solid white', '10px', '5px','center' )
+
+    statusSpan.setInnerText(`${currencySelect}`)
+    statusSpan.appender(getCardStats)
+
+
+
+ const  calc = () =>{
+    const calcArr = [];
+
+     let sum = Math.round(amount / divInto)
+    for (let i = 0; i < divInto; i++) {
+        calcArr.push(sum);
+    } 
+
+    getDivisionContainer.innerHTML = '';
+   
+    for (let j = 0; j < calcArr.length; j++) {
+        const eachDivision = factoryDom('span', 'division', 'division')
+        eachDivision.setInnerText(`${currencySelect}${calcArr[j]}`)
+        eachDivision.appender(getDivisionContainer)
+        eachDivision.element.value = calcArr[j]
+        eachDivision.element.setAttribute('data-index', j)
+    }
+
+    element()
+}
+
+
+const element = ()=>{
+
+
+
+let isClicked = true
+let total = 0;
            
-        const calcDiv = factoryDom('div', 'CalcDivs', 'CalcDivs')
-        const getCalcDiv = calcDiv.element 
+    const calcArrS = Array.from(getDivisionContainer.getElementsByClassName('division'));
+    
+    calcArrS.forEach(element => {
+        element.style.cursor = 'pointer';
+        element.clickCount = 0; 
+            element.addEventListener('click', () => {
+            element.clickCount++; 
+        
+            if (element.clickCount % 2 === 1) { 
+                total += element.value
+                element.style.backgroundColor = 'green';
 
-        let total = 0;
-          const divisionProcessCard = (()=>{
-            statusSpan.setInnerText(`${currencySelect}${total} /${currencySelect}${amount}`)
+                statusSpan.setInnerText(total)          
+            } else {
+                total -= element.value
+                element.style.backgroundColor = '';  
+                statusSpan.setInnerText(total)         
+             }
+        })
+    
+        
+    });
+     
+    
+        }
+
+        calc()
        
-          
-            getCalcDiv.addEventListener('click', (event) => {
-
-                DivisionClickCalculation(event, statusSpan, currencySelect, total, amount)
-                
-                    })
-
-                    calc(amount, divInto, getCalcDiv, currencySelect)
 
    
-
-          })()
           
           const DOMbgColors = () =>{}
         
@@ -137,11 +186,10 @@ const getCalcDiv = document.getElementById('CalcDivs')
 
 
             secondLineElement.appender(card)
-            calcDiv.appender(secondLine)
+            divisionContainer.appender(secondLine)
 
             cardStats.appender(secondLine)
 
-            statusSpan.appender(getCardStats)
             deleteButton.appender(getCardStats)
 
 
@@ -154,7 +202,7 @@ const getCalcDiv = document.getElementById('CalcDivs')
           DOMappenders()
      
 
-return {divisionProcessCard}
+return {statusSpan}
 
 });
 
