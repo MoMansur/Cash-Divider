@@ -1,7 +1,7 @@
 import modelCreator from "./dom.js";
 import { factoryDom } from "./dom.js";
 
-const dataArray = []
+const dataArray = loadDataFromStorage()
 class Data{
     constructor(name, type, amount, divInto){
         this.name = name;
@@ -9,6 +9,23 @@ class Data{
         this.amount = amount;
         this.divInto = divInto
     }  
+}
+
+function saveDataLocalStorage(){
+    const stringify = JSON.stringify(dataArray)
+    localStorage.setItem('dataArray', stringify)
+    
+}
+
+
+
+function loadDataFromStorage() {
+    const data = localStorage.getItem('stringify')
+    if(data){
+       return JSON.parse(data)
+    } else{
+        return []
+    } 
 }
 
 function addCard(name, type, amount, divInto){
@@ -60,6 +77,7 @@ function displayer(currencySelect){
     for(let i = 0; i<dataArray.length; i++){
         modelCreator(dataArray[i].name, dataArray[i].type, dataArray[i].amount, dataArray[i].divInto, i,currencySelect)
         
+        saveDataLocalStorage()
     }
 
 }

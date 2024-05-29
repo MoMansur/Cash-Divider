@@ -131,6 +131,8 @@ const getDivisionContainer = document.getElementById('divisionContainer')
         eachDivision.element.setAttribute('data-index', j)
     }
 
+    
+
     element()
 }
 
@@ -138,6 +140,7 @@ const getDivisionContainer = document.getElementById('divisionContainer')
 const element = ()=>{
 
 
+ 
 
 let isClicked = true
 let total = 0;
@@ -154,12 +157,21 @@ let total = 0;
                 total += element.value
                 element.style.backgroundColor = 'green';
 
-                statusSpan.setInnerText(total)          
+                statusSpan.setInnerText(total)  
+                if(total === amount){
+                    statusSpan.setBgColor('green')
+                    statusSpan.setInnerText('Completed')
+                 }else{
+                    statusSpan.setInnerText(total)    
+                      
+                 }        
             } else {
                 total -= element.value
                 element.style.backgroundColor = '';  
                 statusSpan.setInnerText(total)         
              }
+
+            
         })
     
         
